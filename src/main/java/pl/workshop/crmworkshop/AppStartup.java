@@ -39,7 +39,7 @@ public class AppStartup implements ApplicationRunner {
         user.setUsername("alice");
         user.setPassword("zxc123");
         Set<Role> userRoles = new HashSet<>();
-        userRoles.add(roleService.getOrCreate("USER"));
+        userRoles.add(roleService.getOrCreate("ROLE_USER"));
         user.setRoles(userRoles);
 
         return user;
@@ -50,7 +50,7 @@ public class AppStartup implements ApplicationRunner {
         user.setUsername("admin");
         user.setPassword("admin");
         Set<Role> userRoles = new HashSet<>();
-        userRoles.add(roleService.getOrCreate("ADMIN"));
+        userRoles.add(roleService.getOrCreate("ROLE_ADMIN"));
         user.setRoles(userRoles);
         return user;
     }

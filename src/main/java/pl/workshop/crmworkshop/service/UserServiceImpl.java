@@ -16,7 +16,7 @@ import java.util.Set;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private static final String DEFAULT_USER_ROLE_NAME = "USER";
+    private static final String DEFAULT_USER_ROLE_NAME = "ROLE_USER";
 
     private final UserRepository userRepository;
     private final RoleServiceImpl roleService;
