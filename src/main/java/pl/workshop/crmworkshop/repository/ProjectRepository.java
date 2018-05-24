@@ -15,7 +15,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Query ("select p from Project p where p.indentificator = :ident")
     Project findFirstByIdent (String ident);
 
-    List<Project> findTop5ByOrderByCreatedDesc ();
+    List<Project> findTop5ByIfActiveTrueOrderByCreatedDesc ();
 
 
 }

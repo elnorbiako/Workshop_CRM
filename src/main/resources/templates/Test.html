@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Users</title>
+    <style>
+        * {
+            font-size: 12pt;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th {
+            background: #000;
+            color: #fff;
+        }
+        td {
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<span sec:authorize="isAuthenticated()">
+
+        <p>Witaj, <span sec:authentication="name"></span></p>
+
+        <p sec:authorize="hasRole('ROLE_ADMIN')"> MAM ROLE ADMIN</p>
+    <p sec:authorize="hasRole('ROLE_USER')"> MAM ROLE USER</p>
+    <p sec:authorize="hasRole('ROLE_MODERATOR')"> MAM ROLE MODERATOR</p>
+
+
+    </span>
+
+
+</body>
+</html>

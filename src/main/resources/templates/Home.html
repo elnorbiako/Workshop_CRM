@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Users</title>
+    <style>
+        * {
+            font-size: 12pt;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th {
+            background: #000;
+            color: #fff;
+        }
+        td {
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+<div align="right">
+
+    <p sec:authorize="isAuthenticated()">
+    <p>Logged as: <span sec:authentication="name"></span></p>
+    <p>Roles: <span sec:authentication="authorities"></span></p>
+    </p>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+
+    <p sec:authorize-url="/admin/">
+        <a th:href="@{/admin/panel}"><button>Admin page</button></a><br>
+    </p>
+</div>
+
+
+<h3 th:text="|Last 5 projects:|">Projects</h3>
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Identificator</th>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Details</th>
+
+    </tr>
+    <tr th:each="project, iterStat: ${projects}" th:object="${project}">
+        <td th:text="|${iterStat.count}.|">1.</td>
+        <td th:text="*{identificator}">42</td>
+        <td th:text="*{name}">Alice</td>
+        <td th:text="*{created}">1.1.1999</td>
+        <td th:href="/project/${id}">Project details</td>
+    </tr>
+</table>
+
+
+<h3 th:text="|Last 25 Activities:|">Activities</h3>
+<table>
+    <tr>
+        <th>No.</th>
+        <th>User</th>
+        <th>Type</th>
+        <th>Project</th>
+        <th>Time</th>
+        <th>Details</th>
+
+    </tr>
+    <tr th:each="activity, iterStat: ${activities}" th:object="${activity}">
+        <td th:text="|${iterStat.count}.|">1.</td>
+        <td th:text="*{user.getUsername}">alice</td>
+        <td th:text="*{name}">activ1</td>
+        <td th:text="*{project.getIndentificator}">Proj1</td>
+        <td th:text="*{time}">1.1.1999</td>
+        <td th:href="/activity/${id}">Details</td>
+    </tr>
+
+</table>
+
+</body>
+</html>
