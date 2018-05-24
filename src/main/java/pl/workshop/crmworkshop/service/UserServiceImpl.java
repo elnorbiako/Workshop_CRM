@@ -17,6 +17,7 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
 
     private static final String DEFAULT_USER_ROLE_NAME = "ROLE_USER";
+    private static final String ADMIN_ROLE_NAME = "ROLE_ADMIN";
 
     private final UserRepository userRepository;
     private final RoleServiceImpl roleService;
@@ -62,4 +63,19 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllByProjectId(Long projectId) {
         return userRepository.findAllByProjectsId(projectId);
     }
+
+
+    @Override
+    public void saveAdmin(User user) {
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(true);
+
+        Role role = roleService.getOrCreate(ADMIN_ROLE_NAME);
+        Set<Role> roles = new HashSet<>(Collections.singletonList(role));
+        user.setRoles(roles);
+
+        userRepository.save(user);
+    }
+
 }

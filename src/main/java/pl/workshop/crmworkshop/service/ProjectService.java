@@ -11,5 +11,7 @@ public interface ProjectService {
 
     List<Project> findTop5ByOrderByCreatedDesc ();
 
+    List<Project> findAll();
+
 
 }

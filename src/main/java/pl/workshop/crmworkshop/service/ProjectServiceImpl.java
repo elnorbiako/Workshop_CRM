@@ -22,4 +22,9 @@ public class ProjectServiceImpl implements ProjectService{
     public List<Project> findTop5ByOrderByCreatedDesc() {
         return projectRepository.findTop5ByIfActiveTrueOrderByCreatedDesc();
     }
+
+    @Override
+    public List<Project> findAll() {
+        return projectRepository.findAll();
+    }
 }

@@ -26,13 +26,17 @@
         <th>Id</th>
         <th>Name</th>
         <th>Enabled</th>
+
     </tr>
     <tr th:each="user, iterStat: ${users}" th:object="${user}">
         <td th:text="|${iterStat.count}.|">1.</td>
         <td th:text="*{id}">42</td>
         <td th:text="*{username}">Alice</td>
         <td th:text="*{enabled}">true</td>
+
     </tr>
 </table>
+
+<a th:href="@{/admin/panel}">Back to admin panel.</a>
 </body>
 </html>

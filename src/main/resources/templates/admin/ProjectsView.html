@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Users</title>
+    <style>
+        * {
+            font-size: 12pt;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th {
+            background: #000;
+            color: #fff;
+        }
+        td {
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<h3 th:text="|Active projects: |">Projects</h3>
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Identificator</th>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Details</th>
+
+    </tr>
+    <tr th:each="project, iterStat: ${projects}" th:object="${project}">
+        <td th:text="|${iterStat.count}.|">1.</td>
+        <td th:text="*{identificator}">42</td>
+        <td th:text="*{name}">Alice</td>
+        <td th:text="*{created}">1.1.1999</td>
+        <td th:href="/project/${id}">Project details</td>
+    </tr>
+</table>
+
+
+
+<a th:href="@{/admin/panel}">Back to admin panel.</a>
+
+</body>
+</html>

@@ -35,11 +35,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/users")
-    public String showAllUsers(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "usersView";
-    }
+
 
     @GetMapping("/home")
     public String home(Model model) {
